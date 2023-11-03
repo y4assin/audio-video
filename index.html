@@ -7,10 +7,19 @@
     <title>Demo Àudio i Vídeo</title>
 </head>
 <body>
+    <!-- L'etiqueta <audio> accepta varies propietats, com les aquí utilitzades 
+         a més de muted i src, que es pot utilitzar si no fem servir la subetiqueta source 
+    -->
     <audio controls autoplay loop>
+        <!-- Podem fer servir varies etiquetes source amb diversos formats.
+             El navegador escollirà el primer format reconegut. 
+        -->
         <source src="media/techbg.mp3" type="audio/mp3">
         Ho sento, el teu navegador no suporta àudio d'HTML5.
     </audio>
+    <!-- Recordeu que heu de seguir les lleis en matèria de propietat intelectual.
+         En aquest cas, cal nomenar i enllaçar l'autor i el tipus de llicència. 
+    -->
     <div style="padding: 1em; margin-bottom: 1em; border: 1px; background-color: #eee;">
         "<a rel="nofollow" class="external text" href="https://timtaj.com/royalty-free-music/background-technology">Background Technology</a>" 
         by <a rel="nofollow" class="external text" href="https://freemusicarchive.org/music/timtaj/contact">Taj Tim</a> 
