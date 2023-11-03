@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo Àudio i Vídeo</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Deixem l'etiqueta audio sense controls. Veieu que desapareix tot. -->
@@ -13,9 +14,17 @@
         <source src="media/techbg.mp3" type="audio/mp3">
         Ho sento, el teu navegador no suporta àudio d'HTML5.
     </audio>
+    <!-- Afegim una capa que mostra si l'àudio s'està reproduint: ho fem amb una animació CSS. -->
+    <div class="fonsPlayer">
+        <div class="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+          </div>
+    </div>
     <!-- Afegim un botó de control per engegar la música. Utilitzem una font d'icones. -->
     <div class="controlButtons">
-        <button type="button" onclick="audio.play();">
+        <!-- Engeguem l'àudio en fer click. -->
+        <button type="button" onclick="engegarAudio();">
             <span class="material-symbols-outlined">
                 play_arrow
             </span>
@@ -25,13 +34,27 @@
          En aquest cas, cal nomenar i enllaçar l'autor i el tipus de llicència. 
     -->
     <div style="padding: 1em; margin-bottom: 1em; border: 1px; background-color: #eee;">
-        "<a rel="nofollow" class="external text" href="https://timtaj.com/royalty-free-music/background-technology">Background Technology</a>" 
-        by <a rel="nofollow" class="external text" href="https://freemusicarchive.org/music/timtaj/contact">Taj Tim</a> 
-        is licensed under <a rel="nofollow" class="external text" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International License</a>
+        "<a rel="nofollow" href="https://timtaj.com/royalty-free-music/background-technology">Background Technology</a>" 
+        by <a rel="nofollow" href="https://freemusicarchive.org/music/timtaj/contact">Taj Tim</a> 
+        is licensed under <a rel="nofollow" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International License</a>
     </div>
-    <!-- Amb Javascript manipulem l'àudio. -->
+    <div style="padding: 1em; margin-bottom: 1em; border: 1px; background-color: #eee;">
+        "Animació CSS de <a rel="nofollow" href="https://codepen.io/tedmcdo">Ted MacDonald</a>: 
+        a CodePen <a rel="nofollow" href="https://codepen.io/tedmcdo/pen/PqxKXg">CSS & SVG Waves Animation</a>
+    </div>
+    <!-- Cal seleccionar l'element d'àudio. -->
     <script>
         let audio = document.getElementById('player');
+
+        function engegarAudio() {
+            // engeguem audio
+            audio.play();
+            // engeguem animació
+            var waves = document.querySelectorAll('.wave');
+            for (var i = 0; i < waves.length; i++) {
+                waves[i].classList.add('playing');
+            }
+        }
 
     </script>
 </body>
