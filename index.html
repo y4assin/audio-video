@@ -9,15 +9,17 @@
 </head>
 <body>
     <!-- Deixem l'etiqueta audio sense controls. Veieu que desapareix tot. -->
-    <audio autoplay>
+    <audio id="player">
         <source src="media/techbg.mp3" type="audio/mp3">
         Ho sento, el teu navegador no suporta àudio d'HTML5.
     </audio>
     <!-- Afegim un botó de control per engegar la música. Utilitzem una font d'icones. -->
     <div class="controlButtons">
-        <span class="material-symbols-outlined">
-            play_arrow
-        </span>
+        <button type="button" onclick="audio.play();">
+            <span class="material-symbols-outlined">
+                play_arrow
+            </span>
+        </button>
     </div>
     <!-- Recordeu que heu de seguir les lleis en matèria de propietat intelectual.
          En aquest cas, cal nomenar i enllaçar l'autor i el tipus de llicència. 
@@ -27,5 +29,10 @@
         by <a rel="nofollow" class="external text" href="https://freemusicarchive.org/music/timtaj/contact">Taj Tim</a> 
         is licensed under <a rel="nofollow" class="external text" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International License</a>
     </div>
+    <!-- Amb Javascript manipulem l'àudio. -->
+    <script>
+        let audio = document.getElementById('player');
+
+    </script>
 </body>
 </html>
