@@ -24,6 +24,14 @@
         <!-- podem tenir diversos formats. El repoductor escollirà el primer que reconegui. -->
         <source src="media/metro.mp4" type="video/mp4">
         <source src="media/metro.ogg" type="video/ogg">
+        <!-- afegim els subtítols en format WebVTT (Web Video Text Tracks), un per cada idioma
+             El reproductor ens deixa escollir idioma en el seu menú per defecte.
+        -->
+        <!-- captions: normalment per persones amb discapacitat auditiva, amb descripcions diverses
+             subtitles: per traducció dels diàlegs.
+        -->
+        <track src="media/captions/metro-cat.vtt" label="Català" kind="captions" srclang="es-cat" default>
+        <track src="media/captions/metro-es.vtt" label="Espanyol" kind="captions" srclang="es">
         El teu navegador no suporta l'element HTML vídeo.
     </video>
 </body>
