@@ -20,19 +20,26 @@
             <div class="wave"></div>
             <div class="wave"></div>
           </div>
+               <!-- SVG de icono de play -->
+        <svg width="100" height="100" viewBox="0 0 50 50" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" onclick="engegarAudio();">
+            <polygon points="10,5 40,25 10,45" fill="black" />
+        </svg> 
+
+        
     </div>
-    <!-- Afegim un botó de control per engegar la música. Utilitzem una font d'icones. -->
-    <div class="controlButtons">
-        <!-- Engeguem l'àudio en fer click. -->
-        <button type="button" onclick="engegarAudio();">
-            <span class="material-symbols-outlined">
-                play_arrow
-            </span>
-        </button>
-    </div>
+
+    <div><svg width="100" height="20" style="position: absolute; top: 40%; left: 5%; transform: translate(-50%, -50%);">
+        <!-- Barra de volumen -->
+        <rect x="0" y="0" width="100" height="10" fill="black" />
+        <!-- Control deslizante de volumen -->
+        <circle id="volumeHandle" cx="60" cy="5" r="5" fill="white" />
+    </svg></div>
     <!-- Recordeu que heu de seguir les lleis en matèria de propietat intelectual.
          En aquest cas, cal nomenar i enllaçar l'autor i el tipus de llicència. 
     -->
+    <br>
+    <br>    
+    <br>
     <div style="padding: 1em; margin-bottom: 1em; border: 1px; background-color: #eee;">
         "<a rel="nofollow" href="https://timtaj.com/royalty-free-music/background-technology">Background Technology</a>" 
         by <a rel="nofollow" href="https://freemusicarchive.org/music/timtaj/contact">Taj Tim</a> 
@@ -42,20 +49,52 @@
         "Animació CSS de <a rel="nofollow" href="https://codepen.io/tedmcdo">Ted MacDonald</a>: 
         a CodePen <a rel="nofollow" href="https://codepen.io/tedmcdo/pen/PqxKXg">CSS & SVG Waves Animation</a>
     </div>
+
     <!-- Cal seleccionar l'element d'àudio. -->
     <script>
         let audio = document.getElementById('player');
 
         function engegarAudio() {
-            // engeguem audio
-            audio.play();
-            // engeguem animació
-            var waves = document.querySelectorAll('.wave');
-            for (var i = 0; i < waves.length; i++) {
-                waves[i].classList.add('playing');
-            }
-        }
+    var waves = document.querySelectorAll('.wave');
 
-    </script>
+    if (audio.paused) {
+        // engeguem audio
+        audio.play();
+
+        // engeguem animació
+        for (var i = 0; i < waves.length; i++) {
+            waves[i].classList.add('playing');
+        }
+    } else {
+        // parem audio
+        audio.pause();
+
+        // parem animació
+        for (var i = 0; i < waves.length; i++) {
+            waves[i].classList.remove('playing');
+        }
+    }
+}
+let volumeHandle = document.getElementById('volumeHandle');
+
+volumeHandle.addEventListener('mousedown', function(event) {
+    event.preventDefault();
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+});
+
+function onMouseMove(event) {
+    let newVolume = Math.max(0, Math.min(1, (event.clientX - volumeHandle.getBoundingClientRect().left) / 100));
+    audio.volume = newVolume;
+
+    volumeHandle.setAttribute('cx', newVolume * 100);
+}
+
+function onMouseUp() {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+}
+    </script>   
 </body>
 </html>
