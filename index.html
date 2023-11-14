@@ -34,5 +34,38 @@
         <track src="media/captions/metro-es.vtt" label="Espanyol" kind="captions" srclang="es">
         El teu navegador no suporta l'element HTML vídeo.
     </video>
+    <!-- Se crea un elemento canvas con un ancho de 640px y una altura de 360px. El ID de este canvas es "myCanvas". -->
+    <canvas id="myCanvas" width="640" height="360"></canvas>    
+
+    <!-- Se crea un botón que, al hacer clic, llama a la función "captureFrame". -->
+    <button onclick="captureFrame()">Capturar fotograma</button>
+
+<script>
+    function captureFrame() {
+        let video = document.querySelector('video');
+        let canvas = document.getElementById('myCanvas');
+        let context = canvas.getContext('2d');
+
+        // Dibujar el fotograma actual del video en el canvas
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Obtener los datos de la imagen
+        let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+
+        // Convertir la imagen a blanco y negro recorrer los elementos de data cogidos anteriormente
+        for (let i = 0; i < data.length; i += 4) {
+            let avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            data[i]     = avg; // red
+            data[i + 1] = avg; // green
+            data[i + 2] = avg; // blue
+        }
+
+        // Poner los datos de la imagen en el canvas
+        context.putImageData(imageData, 0, 0);
+    }
+    // se controlan los eventos en el primer boton y se llama a la funcion
+    document.querySelector('button').addEventListener('click', captureFrame);
+</script>
 </body>
 </html>
